@@ -1,1 +1,2 @@
-requests
+# The following module is only for 2_twitterBot
+tweepy
