@@ -1,0 +1,23 @@
+# Alternative for docker run
+# Same result for the below docker run command
+# docker run -v "$(pwd):/app" -v "/home/ccwtadmin/Music/temp:/app/output" -w /app -it my-python3-container python3 main.py mp3
+
+# Never Ending Commands
+# 1. docker run <image name> tail -f /dev/null
+# 2. docker exec -it <container ID> bash
+version: '3'
+services:
+  app:
+    # image: test-images
+    build: 
+      # context defines either a path to a directory containing a Dockerfile, or a URL to a git repository.
+      context: .
+    # restart: always
+    user: root
+    # ports: 
+    #   - 8888:8888
+      # dockerfile: Dockerfile
+    # Use volumes during development or if you have anything you want to have a persistance, like databases and such. If you do not volume mount your database, whenever you restart your container data will be lost.
+    volumes:
+      - ./app:/app
+    working_dir: /app
